@@ -43,7 +43,7 @@ export default function Home() {
               github.com/MonkeyJeremy
             </a>
             <a
-              href="https://linkedin.com/in/jingyu-zhang-66a46"
+              href="https://www.linkedin.com/in/jeremy-zhang-66a46a186/"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-4 py-2 rounded-lg border border-[#2A2A2A] text-[#A1A1AA] hover:text-white hover:border-[#22D3EE]/40 transition-all duration-200 text-sm"

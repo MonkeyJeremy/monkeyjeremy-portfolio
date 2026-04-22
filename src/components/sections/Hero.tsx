@@ -94,7 +94,7 @@ export function Hero() {
             GitHub
           </a>
           <a
-            href="https://linkedin.com/in/jingyu-zhang-66a46"
+            href="https://www.linkedin.com/in/jeremy-zhang-66a46a186/"
             target="_blank"
             rel="noopener noreferrer"
             className="px-6 py-3 rounded-lg border border-[#2A2A2A] text-white font-semibold text-sm hover:border-[#22D3EE]/40 hover:bg-[#111111] transition-all duration-200 flex items-center gap-2"
