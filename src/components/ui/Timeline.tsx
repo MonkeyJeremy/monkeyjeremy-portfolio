@@ -1,4 +1,6 @@
+import Link from 'next/link'
 import { Badge, BadgeColor } from './Badge'
+import { ExperienceDetail } from '@/data/experience'
 
 interface TimelineBadge {
   label: string
@@ -12,6 +14,8 @@ export interface TimelineItem {
   location?: string
   bullets: string[]
   tags: TimelineBadge[]
+  slug?: string
+  detail?: ExperienceDetail
 }
 
 interface TimelineProps {
@@ -23,9 +27,8 @@ export function Timeline({ items }: TimelineProps) {
     <div className="relative">
       <div className="absolute left-0 top-0 bottom-0 w-px bg-[#2A2A2A]" />
       <div className="space-y-10">
-        {items.map((item, index) => (
-          <div key={index} className="relative pl-8">
-            <div className="absolute left-0 top-1.5 w-2 h-2 rounded-full bg-[#22D3EE] -translate-x-[3.5px] ring-4 ring-[#0A0A0A]" />
+        {items.map((item, index) => {
+          const cardContent = (
             <div className="bg-[#111111] border border-[#2A2A2A] rounded-xl p-6 hover:border-[#22D3EE]/20 transition-colors duration-300">
               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
                 <div>
@@ -47,14 +50,34 @@ export function Timeline({ items }: TimelineProps) {
                   </li>
                 ))}
               </ul>
-              <div className="flex flex-wrap gap-2">
-                {item.tags.map((tag, i) => (
-                  <Badge key={i} label={tag.label} color={tag.color} />
-                ))}
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <div className="flex flex-wrap gap-2">
+                  {item.tags.map((tag, i) => (
+                    <Badge key={i} label={tag.label} color={tag.color} />
+                  ))}
+                </div>
+                {item.slug && (
+                  <span className="text-[#22D3EE] text-xs font-medium shrink-0">
+                    View Details →
+                  </span>
+                )}
               </div>
             </div>
-          </div>
-        ))}
+          )
+
+          return (
+            <div key={index} className="relative pl-8">
+              <div className="absolute left-0 top-1.5 w-2 h-2 rounded-full bg-[#22D3EE] -translate-x-[3.5px] ring-4 ring-[#0A0A0A]" />
+              {item.slug ? (
+                <Link href={`/experience/${item.slug}`} className="block cursor-pointer">
+                  {cardContent}
+                </Link>
+              ) : (
+                cardContent
+              )}
+            </div>
+          )
+        })}
       </div>
     </div>
   )
