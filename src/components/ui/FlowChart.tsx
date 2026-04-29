@@ -119,7 +119,7 @@ function StepCard({ step, delay }: { step: WorkflowStep; delay: number }) {
 
 export function FlowChart({ steps }: { steps: WorkflowStep[] }) {
   return (
-    <div className="relative">
+    <div className="relative overflow-x-hidden">
       {/* Animated vertical spine */}
       <motion.div
         initial={{ scaleY: 0, opacity: 0 }}
