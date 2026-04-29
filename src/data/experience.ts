@@ -64,7 +64,7 @@ export const experienceItems: TimelineItem[] = [
           title: 'Data Collection',
           description:
             'Scraped ~25,000 app store reviews from Google Play and the App Store using google-play-scraper and app-store-scraper, handling pagination and rate limits across multiple apps.',
-          tools: ['Python', 'google-play-scraper', 'app-store-scraper'],
+          tools: ['Python', 'Requests', 'BeautifulSoup', 'google-play-scraper', 'app-store-scraper'],
         },
         {
           step: 2,
