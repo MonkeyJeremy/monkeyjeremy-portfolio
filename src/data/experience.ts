@@ -37,54 +37,55 @@ export const experienceItems: TimelineItem[] = [
   {
     company: 'Sciencia AI',
     role: 'Data Analytics Intern',
-    period: 'Feb 2026 – Present',
+    period: 'Feb 2026 – Apr 2026',
     location: 'Remote, USA',
     slug: 'sciencia-ai',
     bullets: [
-      'Built a modular data ingestion and cleaning pipeline using SQL and Python (Requests, BeautifulSoup, Pandas, NumPy) to automate collection, data cleaning, and quality filtering of large-scale user-generated text datasets, reducing manual processing effort by 70%.',
-      'Designed and implemented a relational database schema in SQL to efficiently store, organize, and query scraped data for downstream analytics.',
-      'Conducted exploratory and sentiment analyses on structured datasets using SQL and Python (Scikit-learn) to extract insights on user behavior, trends, and feedback patterns.',
+      'Built a modular ingestion pipeline using Python (google-play-scraper, app-store-scraper) to collect ~25,000 app store reviews, then applied multi-stage cleaning — language detection (langdetect), deduplication, and length filtering — retaining 10,843 high-signal records and reducing manual effort by 70%.',
+      'Designed a 6-table normalized SQLite schema (platforms, apps, users, reviews, sentiment_labels, ingestion_runs) to store and version-track each ingestion run for reproducible downstream analytics.',
+      'Conducted exploratory and sentiment analyses on the cleaned dataset — surfacing that negative reviews (1–2★) are 2.3× longer than positive ones, a key signal for downstream NLP feature engineering.',
       'Developed 5+ interactive Tableau dashboards covering the full analytics lifecycle — from raw data ingestion through cleaning to visual storytelling — enabling non-technical stakeholders to self-serve business insights.',
     ],
     tags: [
       { label: 'Python', color: 'violet' },
-      { label: 'SQL', color: 'emerald' },
+      { label: 'SQLite', color: 'emerald' },
       { label: 'Pandas', color: 'violet' },
       { label: 'Tableau', color: 'amber' },
       { label: 'Sentiment Analysis', color: 'blue' },
       { label: 'Data Cleaning', color: 'emerald' },
+      { label: 'App Store Scraping', color: 'blue' },
     ],
     detail: {
       overview:
-        'At Sciencia AI I owned the end-to-end analytics pipeline: from raw web scraping through data cleaning, structured storage, machine-learning-assisted analysis, and finally interactive dashboards that let non-technical stakeholders explore the data themselves. The challenge was turning noisy, high-volume user-generated text into reliable, queryable insights — without a full data-engineering team.',
+        'At Sciencia AI I owned the end-to-end analytics pipeline for app store review data: scraping Google Play and App Store reviews, cleaning and filtering ~25,000 raw records down to 10,843 high-signal entries, loading them into a normalized SQLite database, and surfacing insights through sentiment analysis and interactive Tableau dashboards. The core challenge was building a pipeline resilient enough to handle multilingual noise, duplicate IDs, and stakeholders who needed self-serve access — without a full data-engineering team.',
       workflow: [
         {
           step: 1,
           title: 'Data Collection',
           description:
-            'Scraped large-scale user-generated text from web sources, handling pagination, rate limits, and dynamic HTML.',
-          tools: ['Python', 'Requests', 'BeautifulSoup'],
+            'Scraped ~25,000 app store reviews from Google Play and the App Store using google-play-scraper and app-store-scraper, handling pagination and rate limits across multiple apps.',
+          tools: ['Python', 'google-play-scraper', 'app-store-scraper'],
         },
         {
           step: 2,
           title: 'Data Cleaning & Quality Filtering',
           description:
-            'Removed duplicates, handled encoding errors, normalized text fields, and applied configurable quality filters to ensure only high-signal records reached the database.',
-          tools: ['Pandas', 'NumPy'],
+            'Applied a multi-stage cleaning pipeline: language detection (langdetect) to remove non-English entries, deduplication on review IDs, and minimum-length filters — retaining 10,843 high-signal records from 25,000 raw (57% retention).',
+          tools: ['Pandas', 'langdetect', 'NumPy'],
         },
         {
           step: 3,
           title: 'Structured Storage',
           description:
-            'Designed a relational schema with foreign keys and indexes optimized for the downstream analytics query patterns, cutting ad-hoc query time significantly.',
-          tools: ['SQL'],
+            'Designed a 6-table normalized SQLite schema (platforms, apps, users, reviews, sentiment_labels, ingestion_runs) with run versioning for full reproducibility of every ingestion.',
+          tools: ['SQLite'],
         },
         {
           step: 4,
           title: 'Analysis & Insights',
           description:
-            'Ran exploratory data analysis and sentiment classification on the cleaned dataset to surface behavioral trends, feedback patterns, and user segments.',
-          tools: ['Python', 'Scikit-learn', 'SQL'],
+            'Ran EDA and TextBlob sentiment classification, finding 86.6% positive sentiment (4–5★) and that negative reviews are 2.3× longer — a key NLP signal guiding downstream feature engineering.',
+          tools: ['Python', 'TextBlob', 'Scikit-learn', 'Matplotlib', 'Seaborn'],
         },
         {
           step: 5,
@@ -98,62 +99,66 @@ export const experienceItems: TimelineItem[] = [
         {
           name: 'Python',
           role: 'Primary scripting language across every pipeline stage',
-          reason: 'Rich data ecosystem (Pandas, Scikit-learn, Requests) and fast iteration',
+          reason: 'Rich data ecosystem (Pandas, TextBlob, scrapers) and fast iteration on cleaning logic',
         },
         {
-          name: 'SQL',
-          role: 'Schema design, data storage, and analytics querying',
-          reason: 'Relational structure suits structured text datasets and enables fast aggregations',
+          name: 'google-play-scraper',
+          role: 'Automated collection of Google Play app reviews at scale',
+          reason: 'Purpose-built library handles pagination and rate limits without browser overhead',
+        },
+        {
+          name: 'app-store-scraper',
+          role: 'Automated collection of Apple App Store reviews',
+          reason: 'Consistent API alongside google-play-scraper keeps the ingestion layer uniform across platforms',
+        },
+        {
+          name: 'SQLite',
+          role: '6-table normalized schema with ingestion run versioning',
+          reason: 'Zero-setup relational DB suited for single-machine analytics; schema enforces data integrity across runs',
         },
         {
           name: 'Pandas',
-          role: 'In-memory data cleaning, transformation, and feature engineering',
-          reason: 'Expressive API for tabular operations; integrates directly with SQL via SQLAlchemy',
+          role: 'In-memory data cleaning, transformation, and feature preparation',
+          reason: 'Expressive API for tabular operations; direct SQLite integration via read_sql / to_sql',
         },
         {
-          name: 'BeautifulSoup',
-          role: 'HTML parsing and content extraction during scraping',
-          reason: 'Simple, reliable parser for structured and semi-structured web pages',
-        },
-        {
-          name: 'Scikit-learn',
-          role: 'Sentiment classification and exploratory ML analysis',
-          reason: 'Consistent API across models; quick to swap classifiers during experimentation',
+          name: 'TextBlob',
+          role: 'Sentiment classification on the cleaned review corpus',
+          reason: 'Lightweight NLP baseline that surfaces polarity patterns without a GPU-dependent model',
         },
         {
           name: 'Tableau',
           role: 'Interactive dashboard delivery for non-technical stakeholders',
-          reason: 'Drag-and-drop drill-downs let stakeholders self-serve without SQL knowledge',
+          reason: 'Drag-and-drop drill-downs let stakeholders self-serve insights without writing SQL',
         },
       ],
       keyAchievements: [
         {
-          metric: '70%',
-          description: 'Reduction in manual processing effort after automating the ingestion and cleaning pipeline',
+          metric: '10,843 / 25,000',
+          description: 'Reviews retained after multi-stage cleaning (language detection, deduplication, length filters) — a 57% retention rate that ensured downstream data quality',
+        },
+        {
+          metric: '2.3×',
+          description: 'Negative reviews (1–2★) are longer than positive ones — a key NLP signal discovered during EDA that guided downstream feature engineering',
         },
         {
           metric: '5+',
           description:
-            'Interactive Tableau dashboards deployed, giving stakeholders real-time self-serve access to insights',
-        },
-        {
-          metric: '1 schema',
-          description:
-            'Relational database design that unified all scraped data sources into a single queryable structure for downstream analytics',
+            'Interactive Tableau dashboards deployed, giving stakeholders real-time self-serve access to sentiment trends and app performance insights',
         },
       ],
       challenges: [
         {
           problem:
-            'Raw scraped text had extremely high noise — duplicates, broken encodings, and off-topic content mixed in with useful records.',
+            'Raw scraped reviews included non-English entries, duplicate IDs across scraping runs, and very short junk reviews (e.g. single-word submissions) — all of which would distort sentiment models if left in.',
           solution:
-            'Built a multi-stage cleaning layer with configurable filters (deduplication keys, encoding detection, keyword-based relevance scoring) so each stage could be tuned independently without touching the scraping logic.',
+            'Built a modular three-stage cleaning pipeline: langdetect filtered non-English text, a composite deduplication key (review_id + platform) eliminated cross-run duplicates, and a minimum token-length threshold removed low-signal entries — reducing 25,000 raw records to 10,843 clean ones.',
         },
         {
           problem:
-            'Non-technical stakeholders were filing frequent ad-hoc report requests, creating a bottleneck on the data team.',
+            'The sentiment class distribution was heavily skewed — 86.6% positive (4–5★) — which would cause any classifier trained on the raw split to under-predict negative and neutral reviews.',
           solution:
-            'Designed Tableau dashboards around their actual questions — with date filters, category drill-downs, and plain-language labels — so they could explore the data themselves and stopped needing one-off reports.',
+            'Applied temporal train/val/test splitting (sorted by review_date to prevent leakage), then used within-split oversampling to correct the class imbalance before any model training, preserving time ordering while balancing the training distribution.',
         },
       ],
     },
