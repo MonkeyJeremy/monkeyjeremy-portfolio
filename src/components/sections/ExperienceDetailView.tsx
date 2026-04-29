@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Badge } from '@/components/ui/Badge'
+import { FlowChart } from '@/components/ui/FlowChart'
 import { TimelineItem } from '@/components/ui/Timeline'
 
 function fade(delay: number) {
@@ -63,32 +64,7 @@ export function ExperienceDetailView({ item }: Props) {
         {/* Workflow */}
         <motion.section {...fade(0.3)} className="mb-10">
           <SectionLabel>Workflow</SectionLabel>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {detail.workflow.map((step) => (
-              <div
-                key={step.step}
-                className="bg-[#111111] border border-[#2A2A2A] rounded-xl p-5 hover:border-[#22D3EE]/20 transition-colors"
-              >
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="w-7 h-7 rounded-full bg-[#22D3EE]/10 border border-[#22D3EE]/30 text-[#22D3EE] text-xs font-bold flex items-center justify-center shrink-0">
-                    {step.step}
-                  </span>
-                  <h3 className="text-white font-semibold text-sm">{step.title}</h3>
-                </div>
-                <p className="text-[#A1A1AA] text-sm mb-4 leading-relaxed">{step.description}</p>
-                <div className="flex flex-wrap gap-1.5">
-                  {step.tools.map((tool) => (
-                    <span
-                      key={tool}
-                      className="text-[#22D3EE] text-xs bg-[#22D3EE]/10 border border-[#22D3EE]/20 rounded-md px-2 py-0.5"
-                    >
-                      {tool}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
+          <FlowChart steps={detail.workflow} />
         </motion.section>
 
         {/* Tech Stack */}
