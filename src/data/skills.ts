@@ -9,6 +9,12 @@ export interface SkillCategory {
 
 export const skillCategories: SkillCategory[] = [
   {
+    category: 'AI & LLM',
+    icon: '🤖',
+    color: 'cyan',
+    skills: ['Claude API', 'LLM Integration', 'Agentic AI Workflows', 'Prompt Engineering', 'Claude Code', 'ChatGPT / GPT-4', 'Grok'],
+  },
+  {
     category: 'Programming Languages',
     icon: '< >',
     color: 'violet',
@@ -42,6 +48,6 @@ export const skillCategories: SkillCategory[] = [
     category: 'Cloud & Tools',
     icon: '☁️',
     color: 'cyan',
-    skills: ['AWS S3', 'AWS EC2', 'Jupyter Notebook', 'VS Code', 'GitHub', 'Claude Code'],
+    skills: ['AWS S3', 'AWS EC2', 'Jupyter Notebook', 'VS Code', 'GitHub'],
   },
 ]

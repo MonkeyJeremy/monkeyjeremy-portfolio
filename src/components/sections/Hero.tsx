@@ -8,10 +8,10 @@ import { Badge } from '@/components/ui/Badge'
 const featuredSkills = [
   { label: 'Python', color: 'violet' as const },
   { label: 'SQL', color: 'emerald' as const },
+  { label: 'LLM Integration', color: 'cyan' as const },
+  { label: 'Agentic AI', color: 'cyan' as const },
   { label: 'Machine Learning', color: 'blue' as const },
-  { label: 'Tableau', color: 'amber' as const },
-  { label: 'AWS', color: 'rose' as const },
-  { label: 'Data Analytics', color: 'cyan' as const },
+  { label: 'Data Visualization', color: 'amber' as const },
 ]
 
 const containerVariants: Variants = {
@@ -42,7 +42,7 @@ export function Hero() {
           animate="visible"
           className="text-xs font-semibold tracking-widest uppercase text-[#22D3EE] mb-4"
         >
-          Data Analyst · Data Scientist · U.S. Citizen
+          Data Scientist · AI Builder · U.S. Citizen
         </motion.p>
 
         <motion.h1
@@ -65,10 +65,11 @@ export function Hero() {
           transition={{ delay: 0.2 }}
           className="text-lg md:text-xl text-[#A1A1AA] mb-10 max-w-2xl mx-auto leading-relaxed"
         >
-          UCSD Data Science graduate building end-to-end analytics pipelines,
-          ML models, and dashboards that turn raw data into real decisions.
-          Currently a Data Analytics Intern at{' '}
-          <span className="text-white font-medium">Sciencia AI</span>.
+          UCSD Data Science graduate building AI-powered applications, agentic
+          workflows, and ML pipelines. Currently at{' '}
+          <span className="text-white font-medium">Sciencia AI</span>{' '}
+          — integrating LLMs, automating data pipelines, and turning raw data
+          into decisions.
         </motion.p>
 
         <motion.div

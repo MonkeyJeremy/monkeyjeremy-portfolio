@@ -18,6 +18,27 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    title: 'NoteFlow — AI-Powered Note-Taking App',
+    period: '2025 – Present',
+    description:
+      'Local-first desktop application with real-time Claude API integration, enabling AI-assisted writing, summarization, and knowledge management directly inside a rich text editor.',
+    highlights: [
+      'Integrated Claude API to provide context-aware AI assistance (summarize, rewrite, expand) inline within the TipTap rich text editor.',
+      'Implemented local-first data persistence using Dexie (IndexedDB wrapper) — all notes stored client-side with zero backend dependency.',
+      'Packaged as a cross-platform desktop app via Electron; React + TypeScript frontend with Vite build pipeline.',
+    ],
+    tags: [
+      { label: 'Claude API', color: 'cyan' },
+      { label: 'LLM', color: 'cyan' },
+      { label: 'React', color: 'violet' },
+      { label: 'TypeScript', color: 'violet' },
+      { label: 'Electron', color: 'blue' },
+      { label: 'Dexie / IndexedDB', color: 'emerald' },
+    ],
+    accentColor: '#22D3EE',
+    githubUrl: 'https://github.com/MonkeyJeremy',
+  },
+  {
     title: 'Detecting Fraud with Oversampling Techniques and Sparsity Constraints',
     period: 'Sept 2023 – Mar 2024',
     description:

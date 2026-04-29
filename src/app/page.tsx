@@ -23,7 +23,7 @@ export default function Home() {
           </p>
           <h2 className="text-2xl font-bold text-white mb-2">Jeremy Zhang</h2>
           <p className="text-[#A1A1AA] text-sm mb-8">
-            Open to Data Analyst · Data Scientist · Analytics Engineer roles
+            Open to AI / Data Science · Data Analyst · Analytics Engineer roles
           </p>
           <div className="flex flex-wrap justify-center gap-4 mb-8">
             <a
