@@ -18,6 +18,28 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    title: 'Data Analyst Agent — Multi-Provider AI Data Analysis Tool',
+    period: 'May 2026',
+    description:
+      'Conversational AI agent that lets users query CSV, Excel, JSON, and SQL databases in plain English. The agent writes and executes real Python or SQL, reads its own tracebacks, self-corrects, and renders interactive charts — no coding required.',
+    highlights: [
+      'Built a bounded ReAct (Reason + Act) loop where the model writes code, executes it, reads the traceback on failure, and retries — every answer is backed by real execution, never a guess.',
+      'Designed a provider abstraction layer (BaseLLMClient ABC) enabling seamless switching between Anthropic Claude and OpenAI GPT; extensible to Gemini, Mistral, Groq, and Ollama with ~50 lines per new provider.',
+      'Implemented prompt caching (80–90% input token cost reduction), an AST import sandbox blocking 25+ dangerous modules before exec(), and 129 automated tests with 80–100% coverage on all non-UI modules.',
+    ],
+    tags: [
+      { label: 'Python', color: 'violet' },
+      { label: 'ReAct Agent', color: 'cyan' },
+      { label: 'Claude API', color: 'cyan' },
+      { label: 'OpenAI API', color: 'cyan' },
+      { label: 'pandas', color: 'emerald' },
+      { label: 'Plotly', color: 'emerald' },
+      { label: 'SQLAlchemy', color: 'blue' },
+    ],
+    accentColor: '#10B981',
+    githubUrl: 'https://github.com/MonkeyJeremy/data-analyst-agent',
+  },
+  {
     title: 'NoteFlow — AI-Powered Note-Taking App',
     period: '2025 – Present',
     description:
