@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { motion, type Variants } from 'framer-motion'
 import { ExternalLink } from 'lucide-react'
 import { GitHubIcon } from '@/components/ui/Icons'
@@ -25,20 +26,13 @@ export function Projects() {
           <SectionHeader
             eyebrow="What I've Built"
             heading="Projects"
-            description="Applied ML and data science projects tackling real-world classification and recommendation challenges."
+            description="Applied ML, AI agent, and data science projects tackling real-world analysis and classification challenges."
           />
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {projects.map((project, index) => (
-            <motion.div
-              key={project.title}
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-            >
+          {projects.map((project, index) => {
+            const cardContent = (
               <div className="h-full flex flex-col bg-[#111111] border border-[#2A2A2A] rounded-xl overflow-hidden hover:border-[#22D3EE]/30 hover:shadow-[0_0_30px_rgba(34,211,238,0.05)] transition-all duration-300 group">
                 <div
                   className="h-1 w-full"
@@ -55,6 +49,7 @@ export function Projects() {
                           href={project.githubUrl}
                           target="_blank"
                           rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
                           className="text-[#52525B] hover:text-white transition-colors duration-200"
                           aria-label="GitHub"
                         >
@@ -66,6 +61,7 @@ export function Projects() {
                           href={project.websiteUrl}
                           target="_blank"
                           rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
                           className="text-[#52525B] hover:text-white transition-colors duration-200"
                           aria-label="Website"
                         >
@@ -87,15 +83,42 @@ export function Projects() {
                     ))}
                   </ul>
 
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag, i) => (
-                      <Badge key={i} label={tag.label} color={tag.color} />
-                    ))}
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <div className="flex flex-wrap gap-2">
+                      {project.tags.map((tag, i) => (
+                        <Badge key={i} label={tag.label} color={tag.color} />
+                      ))}
+                    </div>
+                    {project.slug && (
+                      <span className="text-[#22D3EE] text-xs font-medium shrink-0">
+                        View Details →
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>
-            </motion.div>
-          ))}
+            )
+
+            return (
+              <motion.div
+                key={project.title}
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="h-full"
+              >
+                {project.slug ? (
+                  <Link href={`/projects/${project.slug}`} className="block h-full cursor-pointer">
+                    {cardContent}
+                  </Link>
+                ) : (
+                  cardContent
+                )}
+              </motion.div>
+            )
+          })}
         </div>
       </div>
     </section>
